@@ -108,4 +108,19 @@ contract CrowdFunding {
         // increment the noOfVoters
     }
 
+    // make payment to particular request allow only to manager
+    {
+        // check if raised amount is greater than or equal to target
+
+        // if yes get the request 
+
+        // check if request has completed
+
+        // check if majority supports this request
+
+        // if yes transfer the value to recipient
+
+        // after payment make request as complete
+    } 
+
 }
