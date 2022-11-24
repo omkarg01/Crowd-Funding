@@ -88,6 +88,9 @@ contract CrowdFunding {
     }
 
     // allow only manager (using modifier)
+    modifier onlyManager(){
+        require(msg.sender == manager,"Only manager are allowed to call this function.");
+    }
 
 
     // create a function called creatRequest which takes desc, recipient, value and allow onlyManager
