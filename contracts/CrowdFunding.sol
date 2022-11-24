@@ -24,6 +24,18 @@ contract CrowdFunding {
     // no of contros
     uint public numberOfContributors;
 
+    struct Request {
+        string description;
+        address payable recipient;
+        uint value;
+        bool completed;
+        uint noOfVoters;
+        mapping(address => bool) voters;
+    }
+
+    mapping(uint=>Request) public requests;
+    uint public numRequests;
+
     // a constructors which sets the targets, deadline, min contro, manager
     constructor(uint _target, uint _deadline) {
         target = _target;
@@ -38,10 +50,13 @@ contract CrowdFunding {
         require(block.timestamp < deadline, "Deadline has passed");
 
         // check min value
-        require(msg.value >= minimumContribution, "Minimum contribution is not met");
+        require(
+            msg.value >= minimumContribution,
+            "Minimum contribution is not met"
+        );
 
         // if it is first contribution from sender then increase number Of Contributors
-        if (contributors[msg.sender] == 0){
+        if (contributors[msg.sender] == 0) {
             numberOfContributors += 1;
         }
 
@@ -51,20 +66,15 @@ contract CrowdFunding {
     }
 
     // get contract balance
-    function getContractBalance() public view returns(uint){
+    function getContractBalance() public view returns (uint) {
         return address(this).balance;
     }
 
     function refund() public {
-        // check deadline has passed and target is not reached 
-
+        // check deadline has passed and target is not reached
         // check that sender has made some contributions
-
         // if all conditions met make the sender payable
-
         // proceed with transfer whatever contribution that were made
-
-        // after refund make contribution of sender => 0 
+        // after refund make contribution of sender => 0
     }
-
 }
