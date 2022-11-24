@@ -107,17 +107,22 @@ contract CrowdFunding {
     }
 
     // create a voteRequest function which takes a num to vote 
-    // {
+    function voteRequest(uint _requestNo) public{
         // check user has made some contributions
+        require(contributors[msg.sender] > 0, "You need to be contributor to vote");
 
         // get request which user has requested for
+        Request storage thisRequest = requests[_requestNo];
 
         // check user has already voted for this request
+        require(thisRequest.voters[msg.sender] == false, "You have already voted");
 
         // make true for the thisRequest 
+        thisRequest.voters[msg.sender] = true;
 
         // increment the noOfVoters
-    // }
+        thisRequest.noOfVoters += 1;
+    }
 
     // make payment to particular request allow only to manager
     // {
