@@ -86,4 +86,14 @@ contract CrowdFunding {
         // after refund make contribution of sender => 0
         contributors[msg.sender] = 0;
     }
+
+    // allow only manager (using modifier)
+
+
+    // create a function called creatRequest which takes desc, recipient, value and allow onlyManager
+    {
+        // create a newRequest
+    }
+
+
 }
