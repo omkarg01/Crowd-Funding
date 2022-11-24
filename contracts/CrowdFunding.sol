@@ -33,7 +33,7 @@ contract CrowdFunding {
         mapping(address => bool) voters;
     }
 
-    mapping(uint=>Request) public requests;
+    mapping(uint => Request) public requests;
     uint public numRequests;
 
     // a constructors which sets the targets, deadline, min contro, manager
@@ -72,9 +72,18 @@ contract CrowdFunding {
 
     function refund() public {
         // check deadline has passed and target is not reached
+        require(block.timestamp > deadline && raisedAmount < target, "You are not eligible");
+
         // check that sender has made some contributions
+        require(contributors[msg.sender] > 0);
+
         // if all conditions met make the sender payable
+        address payable user = payable(msg.sender);
+
         // proceed with transfer whatever contribution that were made
+        user.transfer(contributors[msg.sender]);
+
         // after refund make contribution of sender => 0
+        contributors[msg.sender] = 0;
     }
 }
