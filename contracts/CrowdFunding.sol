@@ -125,18 +125,24 @@ contract CrowdFunding {
     }
 
     // make payment to particular request allow only to manager
-    // {
+    function makePayment(uint _requestNo) public onlyManager{
         // check if raised amount is greater than or equal to target
+        require(raisedAmount >= target, "Target is not reached");
 
         // if yes get the request 
+        Request storage thisRequest = requests[_requestNo];
 
         // check if request has completed
+        require(thisRequest.completed == false);
 
         // check if majority supports this request
+        require(thisRequest.noOfVoters > numberOfContributors/2, "Majority is not supporting this request");
 
         // if yes transfer the value to recipient
+        thisRequest.recipient.transfer(thisRequest.value);
 
         // after payment make request as complete
-    // } 
+        thisRequest.completed = true;
+    } 
 
 }
