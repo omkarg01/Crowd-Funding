@@ -55,4 +55,16 @@ contract CrowdFunding {
         return address(this).balance;
     }
 
+    function refund() public {
+        // check deadline has passed and target is not reached 
+
+        // check that sender has made some contributions
+
+        // if all conditions met make the sender payable
+
+        // proceed with transfer whatever contribution that were made
+
+        // after refund make contribution of sender => 0 
+    }
+
 }
