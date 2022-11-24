@@ -95,5 +95,17 @@ contract CrowdFunding {
         // create a newRequest
     }
 
+    // create a voteRequest function which takes a num to vote 
+    {
+        // check user has made some contributions
+
+        // get request which user has requested for
+
+        // check user has already voted for this request
+
+        // make true for the thisRequest 
+
+        // increment the noOfVoters
+    }
 
 }
