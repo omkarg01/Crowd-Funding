@@ -90,16 +90,24 @@ contract CrowdFunding {
     // allow only manager (using modifier)
     modifier onlyManager(){
         require(msg.sender == manager,"Only manager are allowed to call this function.");
+        _;
     }
 
 
     // create a function called creatRequest which takes desc, recipient, value and allow onlyManager
-    {
+    function createRequest(string memory _description, address payable _recipient, uint _value) public onlyManager {
         // create a newRequest
+        Request storage newRequest = requests[numRequests];
+        numRequests += 1;
+        newRequest.description = _description;
+        newRequest.recipient = _recipient;
+        newRequest.value = _value;
+        newRequest.noOfVoters = 0;
+        newRequest.completed = false;
     }
 
     // create a voteRequest function which takes a num to vote 
-    {
+    // {
         // check user has made some contributions
 
         // get request which user has requested for
@@ -109,10 +117,10 @@ contract CrowdFunding {
         // make true for the thisRequest 
 
         // increment the noOfVoters
-    }
+    // }
 
     // make payment to particular request allow only to manager
-    {
+    // {
         // check if raised amount is greater than or equal to target
 
         // if yes get the request 
@@ -124,6 +132,6 @@ contract CrowdFunding {
         // if yes transfer the value to recipient
 
         // after payment make request as complete
-    } 
+    // } 
 
 }
