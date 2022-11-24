@@ -19,7 +19,7 @@ contract CrowdFunding {
     uint public target;
 
     // raised amt
-    uint public amount;
+    uint public raisedAmount;
 
     // no of contros
     uint public numberOfContributors;
@@ -35,8 +35,18 @@ contract CrowdFunding {
     // send eth function
     function sendEth() public payable {
         // check deadline
+        require(block.timestamp < deadline, "Deadline has passed");
+
         // check min value
-        // if no contribution frm sender increase the no of contro
+        require(msg.value >= minimumContribution, "Minimum contribution is not met");
+
+        // if it is first contribution from sender then increase number Of Contributors
+        if (contributors[msg.sender] == 0){
+            numberOfContributors += 1;
+        }
+
         // increase contributors value and raised amt
+        contributors[msg.sender] += msg.value;
+        raisedAmount += msg.value;
     }
 }
