@@ -3,5 +3,5 @@
 ## Tech Stack
 
 - Solidity (Writing Smart Contracts & Tests)
-- Javascript (React & Testing)
+- Javascript
 - [Hardhat](https://hardhat.org/) (Development Framework)
